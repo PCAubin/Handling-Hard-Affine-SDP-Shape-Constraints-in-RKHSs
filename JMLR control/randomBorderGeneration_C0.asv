@@ -1,0 +1,58 @@
+function [gridTDisc,valslowStairs,valsupStairs,gridTDisc2,valslow,valsup,valslowDisc,valsupDisc,valslowEval,valsupEval] =...
+    randomBorderGeneration_C0(nbRdmPts,nbDscPts,sig,t_init, t_fin, scurr,gridTEval)
+%RANDOMBORDERGENERATION generates random constraint functions
+% gridTDisc is the the grid of time points where constraint should be
+% enforced, the corresponding constraints are valslowDisc,valsupDisc if one
+% wants to just sample from the borders (SDP), or
+% valslowStairs,valsupStairs if one uses a piecewise constant approximation
+% as required in principle for tightening (SOC). gridTDisc2,valslow,valsup
+% correspond to a refined grid, halving the stepsize and its values, there 
+% are used to build the piecewise constant approximations.
+% valslowEval,valsupEval correspond to the evaluations of the borders at 
+% gridTEval for visualisation of the constraints.
+%However the code does NOT guarantee that the functions, generated from
+%Gaussian kernel functions with nbRdmPts random coefficients at random
+%times, do not intersect. 
+% This is wh
+
+if nargin >5
+    rng(scurr);
+end
+
+hgauss = @(u,sig) exp(-u.^2/(2*sig^2));
+
+listPts=t_init+(t_fin-t_init)*rand(nbRdmPts,1);
+
+gridTEval=reshape(gridTEval,[],1);
+delta=(t_fin-t_init)/(2*nbDscPts);
+gridTDisc2=[t_init:delta:t_fin]';
+GXDisc=hgauss(repmat(gridTDisc2,1,nbRdmPts)-repmat(listPts',length(gridTDisc2),1),sig);
+GXEval=hgauss(repmat(gridTEval,1,nbRdmPts)-repmat(listPts',length(gridTEval),1),sig);
+
+listCfs_low=randn(nbRdmPts,1);
+valslow=GXDisc*listCfs_low;
+
+valslowStairs=max(max(valslow(1:2:end-2),valslow(2:2:end-1)),valslow(3:2:end));
+offsetlow=-valslow(1)-1;
+valslowStairs=valslowStairs+offsetlow; valslow=valslow+offsetlow;
+valslowDisc=valslow(2:2:end-1);
+valslowEval=GXEval*listCfs_low+offsetlow;
+
+gridTDisc=gridTDisc2(2:2:end-1)';
+listCfs_up=listCfs_low+rand(nbRdmPts,1);
+valsup=GXDisc*listCfs_up;
+offsetup=-valsup(1)+1;
+valsupStairs=min(min(valsup(1:2:end-2),valsup(2:2:end-1)),valsup(3:2:end));
+valsupStairs=valsupStairs+offsetup; valsup=valsup+offsetup;
+valsupDisc=valsup(2:2:end-1);
+valsupEval=GXEval*listCfs_up+offsetup;
+
+
+% figure
+% hold on
+% plot(gridT,GXtest*listCfs+offsetlow)
+% plot(gridT,GXtest*listCfs_up+offsetup)
+% stairs(gridT(1:2:end-1),valslowStairs)
+% stairs(gridT(1:2:end-1),valsupStairs)
+end
+

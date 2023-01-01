@@ -1,0 +1,55 @@
+\documentclass[a4paper,10pt]{article}
+\begin{document}
+\begin{table}
+\centering
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+\hline
+ & Var1 & Var1 & Var1 & Var1 & Var1 & Var1 & Var1 & Var1 \\
+\hline
+ & dim & \# pts & \# cons & Unconstrained & \begin{tabular}{c}Discretized\\ constraints\end{tabular} & \begin{tabular}{c}SOC-ball\\ constraints\end{tabular} & \begin{tabular}{c}SOC-hyp\\ constraints\end{tabular} & \begin{tabular}{c}kSoS\\ constraints\end{tabular} \\
+\hline
+$Q^2$ & 4 & 16 & 61 & 0.5484 $\pm$ 7e-02 & 0.5853 $\pm$ 7e-02 & 0.5975 $\pm$ 7e-02 & 0.5983 $\pm$ 7e-02 & 0.4931 $\pm$ 8e-02 \\
+\hline
+ & 4 & 81 & 303 & 0.5635 $\pm$ 7e-02 & 0.6373 $\pm$ 6e-02 & 0.6535 $\pm$ 6e-02 & 0.6466 $\pm$ 7e-02 & - \\
+\hline
+ & 4 & 256 & 961 & 0.5466 $\pm$ 6e-02 & 0.6391 $\pm$ 5e-02 & 0.6405 $\pm$ 5e-02 & - & - \\
+\hline
+$L_{err}^2$ & 4 & 16 & 61 & 0.6083 $\pm$ 9e-02 & 0.5587 $\pm$ 9e-02 & 0.5422 $\pm$ 9e-02 & 0.5412 $\pm$ 9e-02 & 0.6829 $\pm$ 1e-01 \\
+\hline
+ & 4 & 81 & 303 & 0.5881 $\pm$ 9e-02 & 0.4886 $\pm$ 8e-02 & 0.4667 $\pm$ 9e-02 & 0.4760 $\pm$ 1e-01 & - \\
+\hline
+ & 4 & 256 & 961 & 0.6107 $\pm$ 8e-02 & 0.4862 $\pm$ 6e-02 & 0.4843 $\pm$ 7e-02 & - & - \\
+\hline
+$L_{cons}^1$ & 4 & 16 & 61 & 0.0391 $\pm$ 1e-02 & 0.0258 $\pm$ 7e-03 & 0.0204 $\pm$ 6e-03 & 0.0202 $\pm$ 6e-03 & 0.0424 $\pm$ 1e-02 \\
+\hline
+ & 4 & 81 & 303 & 0.0332 $\pm$ 1e-02 & 0.0086 $\pm$ 3e-03 & 0.0054 $\pm$ 2e-03 & 0.0047 $\pm$ 2e-03 & - \\
+\hline
+ & 4 & 256 & 961 & 0.0368 $\pm$ 1e-02 & 0.0035 $\pm$ 1e-03 & 0.0017 $\pm$ 1e-03 & - & - \\
+\hline
+$T_s$ & 4 & 16 & 61 & $<$0.01 & 0.0811 & 0.1031 & 2.1350 & 1.4650 \\
+\hline
+ & 4 & 81 & 303 & $<$0.01 & 0.2875 & 0.3695 & 37.1500 & - \\
+\hline
+ & 4 & 256 & 961 & $<$0.01 & 2.4300 & 3.1250 & - & - \\
+\hline
+$Q^2$ & 6 & 64 & 360 & 0.1527 $\pm$ 3e-02 & 0.1741 $\pm$ 2e-02 & 0.2054 $\pm$ 3e-02 & 0.2055 $\pm$ 3e-02 & - \\
+\hline
+ & 6 & 729 & 4097 & 0.1451 $\pm$ 2e-02 & 0.2104 $\pm$ 3e-02 & 0.2971 $\pm$ 5e-02 & - & - \\
+\hline
+$L_{err}^2$ & 6 & 64 & 360 & 1.6210 $\pm$ 5e-02 & 1.5801 $\pm$ 5e-02 & 1.5202 $\pm$ 5e-02 & 1.5201 $\pm$ 5e-02 & - \\
+\hline
+ & 6 & 729 & 4097 & 1.6355 $\pm$ 4e-02 & 1.5107 $\pm$ 5e-02 & 1.3448 $\pm$ 9e-02 & - & - \\
+\hline
+$L_{cons}^1$ & 6 & 64 & 360 & 0.0394 $\pm$ 4e-03 & 0.0207 $\pm$ 2e-03 & 0.0125 $\pm$ 1e-03 & 0.0125 $\pm$ 1e-03 & - \\
+\hline
+ & 6 & 729 & 4097 & 0.0399 $\pm$ 4e-03 & 0.0031 $\pm$ 3e-04 & 0.0014 $\pm$ 3e-04 & - & - \\
+\hline
+$T_s$ & 6 & 64 & 360 & $<$0.01 & 0.4475 & 0.5880 & 71.2500 & - \\
+\hline
+ & 6 & 729 & 4097 & $<$0.01 & 54.7000 & 70.0000 & - & - \\
+\hline
+\end{tabular}
+\caption{MyTableCaption}
+\label{table:MyTableLabel}
+\end{table}
+\end{document}
